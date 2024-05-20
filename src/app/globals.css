@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 .icon-class {
   height: 100px;
+  max-width: 110px;
+  object-fit: contain;
+  width: max-content;
+}
+
+ul {
+  list-style-type: disc; /* или circle */
+  padding-left: 30px;
+}
+.list-item {
+  padding-left: 12px; /* увеличение отступа слева от маркера */
+  color: #2D2D2D;
 }
