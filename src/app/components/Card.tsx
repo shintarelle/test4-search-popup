@@ -22,7 +22,7 @@ function Card({ item }: CardProps) {
     <div className={`max-w-[424px] w-full border-2 p-[24px] flex flex-col gap-[24px] mx-[10px] sm:mx-0`} style={{ borderColor }}>
       <div className='flex justify-end items-end shrink-0'>
         <div className='max-w-fit'>
-          <Icon name={item.iconName} className="icon-class" />
+          <Icon name={item.iconName} className="icon-class animate-pulse" />
         </div>
       </div>
 
