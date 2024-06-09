@@ -1,5 +1,4 @@
-
-import { data } from '../../data'
+import Image from 'next/image'
 import Header from '../components/Header';
 
 export default function Home() {
@@ -7,12 +6,7 @@ export default function Home() {
     <>
       <Header />
       <main style={{display: 'flex'}}>
-        <img src='/image.png' alt='pic' width={500} height={400} />
-        <img src='/image copy 2.png' alt='pic' width={500} height={400} />
-        <img src='/star.png' alt='pic' width={16} height={16} style={{opacity: 0.6} } />
-        <img src='/star-solid.png' alt='pic' width={16} height={16} />
-        <img src='/search.png' alt='pic' width={20} height={20} style={{opacity: 0.6} }/>
-
+        <Image src='/picture.png' alt='picture' width={500} height={400} />
       </main>
     </>
   );
