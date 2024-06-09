@@ -1,12 +1,32 @@
 'use client'
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import SearchPopup from './SearchPopup';
 import styles from './Header.module.css';
 
+
 const Header = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const popupRef = useRef<HTMLDivElement>(null);
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+      setIsPopupOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isPopupOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isPopupOpen]);
 
   return (
     <header className={styles.header}>
@@ -19,17 +39,19 @@ const Header = () => {
         <span className={styles.headerMenuItemText}>XTZ</span>
       </div>
       <div className={styles.searchButtonWrap}>
-        <button
+      <button
         className={`${styles.searchButton} ${isPopupOpen ? styles.searchButtonActive : ''}`}
         onClick={() => setIsPopupOpen(!isPopupOpen)}
-        // onFocus={() => setIsPopupOpen(true)}
-        // onBlur={() => setIsPopupOpen(false)}
       >
-          <Image src='/search.png' alt='pic' width={20} height={20} style={{ opacity: 0.6 }} />
+        <Image src='/search.png' alt='pic' width={20} height={20} style={{ opacity: 0.6 }} />
         Search
         </button>
-        {isPopupOpen && <SearchPopup />}
-      </div>
+      {isPopupOpen && (
+        <div ref={popupRef}>
+          <SearchPopup />
+        </div>
+        )}
+        </div>
     </header>
   );
 };

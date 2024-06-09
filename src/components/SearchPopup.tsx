@@ -1,16 +1,9 @@
 'use client'
 import { useState } from 'react';
-import { FaSearch, FaTimes, FaStar } from 'react-icons/fa';
+import Image from 'next/image';
 import styles from './SearchPopup.module.css';
+import data from '../../coins.json'
 
-const data = [
-  "WINGS", "STARL", "CVP", "DOT", "ONG", "MSOL", "JENNER", "LXT", "ORBR",
-  "CMP", "KP3R", "BNBBULL", "HPT", "AERGO", "MONA", "CANDY", "MAGE",
-  "PLY", "MMF", "JAPAN225IX", "RSR", "HARD", "UOS", "DAD", "POA", "EVX",
-  "NFT", "B2M", "ANTEX", "", "RPX", "MOTHER", "GYEN", "PAAL", "RVN",
-  "ID", "EURCV", "CERE", "MUSD", "PYR", "ZEROLEND", "RDNT", "ANY",
-  "MICE", "GO", "DICE", "TAVA", "VET"
-];
 
 const SearchPopup = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -41,35 +34,39 @@ const SearchPopup = () => {
   return (
     <div className={styles.popup}>
       <div className={styles.header}>
-        <FaSearch />
+      <div className={styles.search}>
+        <Image src='/search.png' alt='pic' width={24} height={24} style={{ opacity: 0.6 }} />
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Search..."
           value={searchTerm}
           onChange={handleSearchChange}
           className={styles.input}
         />
-        {searchTerm && <FaTimes className={styles.clearIcon} onClick={handleClearSearch} />}
+        {searchTerm && <Image src='/close.png' alt='pic' width={16} height={16} className={styles.clearIcon} onClick={handleClearSearch}/>}
       </div>
-      <div className={styles.filters}>
-        <button onClick={() => setFilter('all')} className={filter === 'all' ? styles.active : ''}>
+        <div className={styles.filters}>
+          <button onClick={() => setFilter('favorites')} className={filter === 'favorites' ? styles.active : ''}>
+            <Image src='/star-solid.png' alt='pic' width={16} height={16} />
+            <span>Favorites</span>
+          </button>
+          <button onClick={() => setFilter('all')} className={filter === 'all' ? styles.active : ''}>
           All Coins
-        </button>
-        <button onClick={() => setFilter('favorites')} className={filter === 'favorites' ? styles.active : ''}>
-          <FaStar /> Favorites
-        </button>
+          </button>
+        </div>
       </div>
-      <ul className={styles.list}>
+
+      <div className={styles.content}>
+        <ul className={styles.list}>
         {filteredData.map((item) => (
-          <li key={item} className={styles.listItem}>
-            <FaStar
-              className={favorites.includes(item) ? styles.filledStar : styles.outlineStar}
-              onClick={() => toggleFavorite(item)}
+          <li key={item} className={styles.listItem} onClick={() => toggleFavorite(item)}>
+            <Image src={favorites.includes(item) ? '/star-solid.png' : '/star.png'} alt='pic' width={16} height={16}
             />
             {item}
           </li>
         ))}
-      </ul>
+        </ul>
+      </div>
     </div>
   );
 };
