@@ -1,0 +1,61 @@
+.popup {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  right: 0;
+  background-color: #121212;
+  padding: 16px;
+  border: 1px solid #444;
+  width: 300px;
+  border-radius: 8px;
+}
+
+.input {
+  flex: 1;
+  padding: 8px;
+  background-color: #222;
+  border: 1px solid #444;
+  color: #fff;
+}
+
+.clearIcon {
+  cursor: pointer;
+}
+
+.filters {
+  margin: 16px 0;
+  display: flex;
+  gap: 16px;
+}
+
+.filters button {
+  background: none;
+  border: none;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.filters .active {
+  color: #fff;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.outlineStar {
+  color: #444;
+}
+
+.filledStar {
+  color: gold;
+}
